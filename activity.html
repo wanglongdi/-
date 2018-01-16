@@ -23,7 +23,7 @@
 		<img src="images/activity_packet.png" />
 	</div>
 	<!-- activity_one -->
-	<div id="activity_one" style="display: none">
+	<div id="activity_one" data="">
 		支付1元抢红包
 	</div>
 
@@ -68,7 +68,7 @@
 	</div>
 
 	<!-- activity_invite -->
-	<div class="activity_invite0" style="display: block">
+	<div class="activity_invite0" style="display: none">
 		<!-- activity_invite_text -->
 		<div class="activity_invite_text mb">
 			您已成功助力<b class="text">2.57</b>元<br/>&nbsp;&nbsp;并获得助力金<b class="text">2.57</b>元！
@@ -79,7 +79,7 @@
 			<div class="get_icon"></div>
 		</div>
 		<!-- activity_want -->
-		<div id="activity_want"></div>
+		<div id="activity_want" data="1"></div>
 		<!-- activity_hint -->
 		<div id="activity_hint">
 			点击上方“我要红包”获得助力金
@@ -277,6 +277,20 @@
 		$('#error').show().text(obj);
 		setTimeout("$('#error').hide()",2000);
 	}
+	//发送验证码
+	$('#send_code').click(function(){
+		var telVal=$('input[name=telphone]').val();
+		var telReg = /^1\d{10}$/;
+		if(telVal==''){
+			errorForm('请输入手机号');
+			return false;
+		}else if(!telReg.test(telVal)){
+			errorForm('请输入正确手机号');
+			return false;
+		}else{
+			console.log(11);
+		}
+	})
 	//立即登陆
 	$('#login_btn').click(function(){
 		var telVal=$('input[name=telphone]').val();
@@ -343,12 +357,7 @@
 	}
 	speedAnimate();
 
-	//我也要红包
-	$('#activity_want').click(function(){
-		$('#mask').show();
-		$('#login').show();
-		$('#close_btn').show();
-	})
+	
 
 	//助力成功
 	function helpSuc(obj){

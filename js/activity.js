@@ -42,12 +42,27 @@ $(function(){
 		$('#help_suc_line').hide();
 		$('#help_suc').hide();
 	})
+	function showLogin(obj){
+		var data=obj.attr('data');
+		if(data==''){
+			$('#mask').show();
+			$('#login').show();
+			$('#close_btn').show();
+		}else{
+			window.location.href="activity_pay.html"
+		}
+	}
 	//支付1元抢红包
 	$('#activity_one').click(function(){
-		$('#mask').show();
-		$('#login').show();
-		$('#close_btn').show();
+		
+		showLogin($(this));
 	})
+
+	//我也要红包
+	$('#activity_want').click(function(){
+		showLogin($(this));
+	})
+
 	//邀请好友助力
 	$('#activity_invite_btn').click(function(){
 		$('#mask').show();
