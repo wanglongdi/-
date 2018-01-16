@@ -437,7 +437,7 @@ input::-ms-input-placeholder{
 	background: rgba(0,0,0,0.6);
 	left: 0;
 	top: 0;
-	display: block;
+	display: none;
 }
 #error{
 	width: 180px;
@@ -536,7 +536,7 @@ input::-ms-input-placeholder{
 	cursor: pointer;
 	background: url('../images/activity_close.png') no-repeat;
 	background-size: cover;
-	display: block;
+	display: none;
 }
 /* activity_point */
 #activity_point{

@@ -37,7 +37,7 @@ $(function(){
 		setTimeout("$('#error').hide()",2000);
 	}
 	//立即登陆
-	$('#loginForm').submit(function(){
+	$('#login_btn').click(function(){
 		var telVal=$('input[name=telphone]').val();
 		var codeVal=$('input[name=code]').val();
 		var telReg = /^1\d{10}$/;
@@ -53,8 +53,18 @@ $(function(){
 		}else{
 			$('#mask').hide();
 			$('#login').hide();
-			$('#login_close').hide();
-			return true;
+			$('#close_btn').hide();
+			$.ajax({
+				url: 'http://www.baidu.com',
+				type: 'post',
+				data:{
+					telphone: telVal,
+					code: codeVal
+				},
+				success:function(data){
+					console.log(data);
+				}
+			});
 		}
 	})
 	//关闭弹框
@@ -83,6 +93,19 @@ $(function(){
 		$('#activity_packet').show();
 		$('#close_btn').show();
 	})
+	//助力金额
+	function activityMoney(obj){
+		var num=Number(obj)*100;
+		var num_shi=parseInt(num/1000);
+		var num_ge=parseInt(num/100-num_shi*10);
+		var num_jiao=parseInt(num/10-num_shi*100-num_ge*10);
+		var num_fen=parseInt(num-num_shi*1000-num_ge*100-num_jiao*10);
+		$('#money_shi').html(num_shi);
+		$('#money_ge').html(num_ge);
+		$('#money_jiao').html(num_jiao);
+		$('#money_fen').html(num_fen);
+	}
+	activityMoney(12.56);
 	//进度条
 	function speedAnimate(){
 		var money_shi=Number($('#money_shi').text());
